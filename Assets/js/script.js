@@ -67,17 +67,19 @@ var questions = [
 
 function loadQuestion() {
   problem.innerHTML = questions[sequence].question;
+
   firstChoice.innerHTML = questions[sequence].choices[0];
-  firstChoice.addEventListener("click", checkAnswer);
+  firstChoice.addEventListener("click", checkAnswer, alert);
   secondChoice.innerHTML = questions[sequence].choices[1];
-  secondChoice.addEventListener("click", checkAnswer);
+  secondChoice.addEventListener("click", checkAnswer, alert);
   thirdChoice.innerHTML = questions[sequence].choices[2];
-  thirdChoice.addEventListener("click", checkAnswer);
+  thirdChoice.addEventListener("click", checkAnswer, alert);
   fourthChoice.innerHTML = questions[sequence].choices[3];
   fourthChoice.addEventListener("click", checkAnswer);
 }
 
 function checkAnswer() {
+  alert(event.target.id);
   sequence++;
   loadQuestion(sequence);
   alert(sequence);
