@@ -25,7 +25,10 @@ function quizGame() {
   homePage.style.display = "none";
   quiz.style.display = "flex";
 
-  loadQuestion(sequence);
+  if (sequence < questions.length) {
+    loadQuestion();
+  }
+
   // position = questions[sequence].choices.indexOf(questions[sequence].answer);
 
   //add a class identifier to position
@@ -62,7 +65,7 @@ var questions = [
 // either brute force it by creating a function for each question and cycling through,
 //or create an array of arrays of the questions and cycle through that.
 
-function loadQuestion(sequence) {
+function loadQuestion() {
   problem.innerHTML = questions[sequence].question;
   firstChoice.innerHTML = questions[sequence].choices[0];
   firstChoice.addEventListener("click", checkAnswer);
@@ -74,11 +77,10 @@ function loadQuestion(sequence) {
   fourthChoice.addEventListener("click", checkAnswer);
 }
 
-function checkAnswer(sequence) {
-  alert("seriously");
+function checkAnswer() {
   sequence++;
   loadQuestion(sequence);
-  return sequence;
+  alert(sequence);
 }
 
 function usersAnswerChoice(currentQuestion) {
