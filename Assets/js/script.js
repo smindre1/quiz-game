@@ -78,6 +78,9 @@ function quizGame() {
 }
 
 function loadQuestion() {
+  if (sequence >= questions.length) {
+    endGame();
+  }
   problem.innerHTML = questions[sequence].question;
 
   firstChoice.innerHTML = questions[sequence].choices[0];
@@ -91,6 +94,9 @@ function loadQuestion() {
 }
 
 function checkAnswer(event) {
+  // if (sequence >= questions.length) {
+  //   endGame();
+  // }
   if (event.target.textContent == questions[sequence].answer) {
     alert("correct");
     score = score + 100;
@@ -100,6 +106,9 @@ function checkAnswer(event) {
     timeDeducted = timeDeducted + 10;
   }
   sequence++;
+  // if (sequence >= questions.length) {
+  //   endGame();
+  // }
   loadQuestion(sequence);
 }
 //if time runs out, function stops and display: none currentQuestion
@@ -111,4 +120,6 @@ function endGame() {
   gameOverPage.style.display = "flex";
   var finalScore = document.getElementById("finalScore");
   finalScore.innerHTML = "Score: " + score;
+  sequence = 0;
+  timeDeducted = timeDeducted + 1000;
 }
