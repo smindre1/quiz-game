@@ -1,12 +1,15 @@
+//Check if this is needed
 var start = new Date();
 var timer = document.querySelector(".timer");
 
 var score = 0;
 var homePage = document.getElementById("home");
-var btn = document.getElementById("startButton");
-// var correct = document.getElementById("answer");
-// var wrong = document.getElementById("wrong");
+var gameOverPage = document.getElementById("gameOverPage");
+var viewHighscorePage = document.getElementById("highscorePage");
 
+var btn = document.getElementById("startButton");
+var highscoreTab = document.getElementById("viewHighscore");
+var homepageButton = document.getElementById("homepageButton");
 var problem = document.getElementById("question");
 var firstChoice = document.getElementById("firstChoice");
 var secondChoice = document.getElementById("secondChoice");
@@ -45,6 +48,8 @@ var questions = [
 var timeDeducted = 0;
 
 btn.addEventListener("click", quizGame);
+highscoreTab.addEventListener("click", highscorePage);
+homepageButton.addEventListener("click", homepageScreen);
 
 function quizGame() {
   // var quiz = document.getElementById("quiz");
@@ -115,11 +120,22 @@ function checkAnswer(event) {
 
 function endGame() {
   quiz.style.display = "none";
-  var gameOverPage = document.getElementById("gameOverPage");
   timer.innerHTML = "";
   gameOverPage.style.display = "flex";
   var finalScore = document.getElementById("finalScore");
   finalScore.innerHTML = "Score: " + score;
   sequence = 0;
   timeDeducted = timeDeducted + 1000;
+}
+
+function highscorePage() {
+  gameOverPage.style.display = "none";
+  homePage.style.display = "none";
+  viewHighscorePage.style.display = "flex";
+}
+
+function homepageScreen() {
+  gameOverPage.style.display = "none";
+  viewHighscorePage.style.display = "none";
+  homePage.style.display = "flex";
 }
