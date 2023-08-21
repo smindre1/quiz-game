@@ -143,10 +143,10 @@ function highscorePage() {
   gameOverPage.style.display = "none";
   homePage.style.display = "none";
   viewHighscorePage.style.display = "flex";
-  // for (i = 0; i < scoreboard.length/2; i++) {
-  //   viewHighscorePage.appendChild(document.createElement("li").innerHTML(scoreboard[i].player[0] + ": " + scoreboard[i].player[1]));
-  // scoreboard[i]
-  // }
+  for (i = 0; i < scoreboard.length; i++) {
+    var lineOne = viewHighscorePage.appendChild(document.createElement("li"));
+    lineOne.innerHTML = scoreboard[i][0] + ": " + scoreboard[i][1];
+  }
 }
 
 function homepageScreen() {
@@ -167,7 +167,7 @@ submitInitials.addEventListener("click", function (event) {
   finalScore.innerHTML = nameInitials + ": " + score;
   scoreboard.push(player);
 
-  alert(scoreboard[1]);
+  // alert(scoreboard[1]);
 });
 
 // initials.addEventListener("submit", function () {
