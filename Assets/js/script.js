@@ -6,17 +6,24 @@ var score = 0;
 var homePage = document.getElementById("home");
 var gameOverPage = document.getElementById("gameOverPage");
 var viewHighscorePage = document.getElementById("highscorePage");
+var form = document.getElementById("form");
+var initials = document.getElementById("initials");
+var submitInitials = document.getElementById("submitInitials");
 
 var btn = document.getElementById("startButton");
 var highscoreTab = document.getElementById("viewHighscore");
-var homepageButton = document.getElementById("homepageButton");
+var homepageButton1 = document.getElementById("homepageButton1");
+var homepageButton2 = document.getElementById("homepageButton2");
+var playAgain = document.getElementById("playAgainButton");
 var problem = document.getElementById("question");
 var firstChoice = document.getElementById("firstChoice");
 var secondChoice = document.getElementById("secondChoice");
 var thirdChoice = document.getElementById("thirdChoice");
 var fourthChoice = document.getElementById("fourthChoice");
+var finalScore = document.getElementById("finalScore");
 var sequence = 0;
 var score = 0;
+var scoreboard = [];
 
 var questions = [
   {
@@ -49,7 +56,9 @@ var timeDeducted = 0;
 
 btn.addEventListener("click", quizGame);
 highscoreTab.addEventListener("click", highscorePage);
-homepageButton.addEventListener("click", homepageScreen);
+homepageButton1.addEventListener("click", homepageScreen);
+homepageButton2.addEventListener("click", homepageScreen);
+playAgain.addEventListener("click", quizGame);
 
 function quizGame() {
   // var quiz = document.getElementById("quiz");
@@ -57,6 +66,14 @@ function quizGame() {
   //   timer.innerHTML = "Time: " + (questions.length * 15 - Math.floor((new Date() - start) / 1000) - timeDeducted) + " seconds";
   // }, 1000);
 
+  //These are here so that if a user wants to play again the game will reset
+  score = 0;
+  sequence = 0;
+  timeDeducted = 0;
+  gameOverPage.style.display = "none";
+  homePage.style.display = "flex";
+  //There is and issue with trying to reset the timer, every game repeat 10 seconds is deducted from the counter.
+  //I believe it has something to do with the checkAnswers function.
   var quiz = document.getElementById("quiz");
   var interval = setInterval(function () {
     function clock() {
@@ -65,7 +82,7 @@ function quizGame() {
         timer.innerHTML = "Time: " + time + " seconds";
       }
       if (time < 0) {
-        // alert("TImes Up!");
+        // alert("Times Up!");
         endGame();
         clearInterval(interval);
       }
@@ -99,9 +116,6 @@ function loadQuestion() {
 }
 
 function checkAnswer(event) {
-  // if (sequence >= questions.length) {
-  //   endGame();
-  // }
   if (event.target.textContent == questions[sequence].answer) {
     alert("correct");
     score = score + 100;
@@ -111,9 +125,6 @@ function checkAnswer(event) {
     timeDeducted = timeDeducted + 10;
   }
   sequence++;
-  // if (sequence >= questions.length) {
-  //   endGame();
-  // }
   loadQuestion(sequence);
 }
 //if time runs out, function stops and display: none currentQuestion
@@ -122,7 +133,7 @@ function endGame() {
   quiz.style.display = "none";
   timer.innerHTML = "";
   gameOverPage.style.display = "flex";
-  var finalScore = document.getElementById("finalScore");
+  form.style.display = "flex";
   finalScore.innerHTML = "Score: " + score;
   sequence = 0;
   timeDeducted = timeDeducted + 1000;
@@ -132,6 +143,10 @@ function highscorePage() {
   gameOverPage.style.display = "none";
   homePage.style.display = "none";
   viewHighscorePage.style.display = "flex";
+  // for (i = 0; i < scoreboard.length/2; i++) {
+  //   viewHighscorePage.appendChild(document.createElement("li").innerHTML(scoreboard[i].player[0] + ": " + scoreboard[i].player[1]));
+  // scoreboard[i]
+  // }
 }
 
 function homepageScreen() {
@@ -139,3 +154,24 @@ function homepageScreen() {
   viewHighscorePage.style.display = "none";
   homePage.style.display = "flex";
 }
+
+submitInitials.addEventListener("click", function (event) {
+  event.preventDefault();
+  var nameInitials = initials.value.trim();
+  if (nameInitials === "") {
+    return;
+  }
+  var player = [nameInitials, score];
+  localStorage.setItem("user", JSON.stringify(player));
+  form.style.display = "none";
+  finalScore.innerHTML = nameInitials + ": " + score;
+  scoreboard.push(player);
+
+  alert(scoreboard[1]);
+});
+
+// initials.addEventListener("submit", function () {
+//   localStorage.setItem("");
+// });
+
+//Make a new function to get the local storage and fill in the scoreboard array
