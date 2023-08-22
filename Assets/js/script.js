@@ -1,5 +1,4 @@
 //Check if this is needed
-var start = new Date();
 var timer = document.querySelector(".timer");
 
 var score = 0;
@@ -72,19 +71,23 @@ function quizGame() {
   timeDeducted = 0;
   gameOverPage.style.display = "none";
   homePage.style.display = "flex";
+  var start = new Date();
   //There is and issue with trying to reset the timer, every game repeat 10 seconds is deducted from the counter.
   //I believe it has something to do with the checkAnswers function.
   var quiz = document.getElementById("quiz");
   var interval = setInterval(function () {
     function clock() {
       var time = questions.length * 15 - Math.floor((new Date() - start) / 1000) - timeDeducted;
+      console.log(new Date(), "new Date");
+      console.log(start, "start");
       if (time > 0) {
         timer.innerHTML = "Time: " + time + " seconds";
       }
+      //When time runs out, end the game.
       if (time < 0) {
-        // alert("Times Up!");
         endGame();
         clearInterval(interval);
+        console.log(interval, "interval");
       }
     }
     clock();
