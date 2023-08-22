@@ -143,9 +143,15 @@ function highscorePage() {
   gameOverPage.style.display = "none";
   homePage.style.display = "none";
   viewHighscorePage.style.display = "flex";
-  for (i = 0; i < scoreboard.length; i++) {
-    var lineOne = viewHighscorePage.appendChild(document.createElement("li"));
-    lineOne.innerHTML = scoreboard[i][0] + ": " + scoreboard[i][1];
+  var highscoreTable = document.getElementById("highscoreTable");
+  while (highscoreTable.lastChild) {
+    highscoreTable.removeChild(highscoreTable.lastChild);
+  }
+  var storedScoreboard = JSON.parse(localStorage.getItem("user"));
+  // console.log(storedScoreboard);
+  for (i = 0; i < storedScoreboard.length; i++) {
+    var lineOne = highscoreTable.appendChild(document.createElement("li"));
+    lineOne.innerHTML = storedScoreboard[i][0] + ": " + storedScoreboard[i][1];
   }
 }
 
@@ -162,11 +168,13 @@ submitInitials.addEventListener("click", function (event) {
     return;
   }
   var player = [nameInitials, score];
-  localStorage.setItem("user", JSON.stringify(player));
   form.style.display = "none";
   finalScore.innerHTML = nameInitials + ": " + score;
-  scoreboard.push(player);
 
+  var storedScoreboard = JSON.parse(localStorage.getItem("user"));
+  scoreboard = storedScoreboard;
+  scoreboard.push(player);
+  localStorage.setItem("user", JSON.stringify(scoreboard));
   // alert(scoreboard[1]);
 });
 
