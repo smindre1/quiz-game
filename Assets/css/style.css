@@ -1,12 +1,24 @@
+:root {
+  --prussianBlue: #053f5c;
+  --bostonBlue: #429ebd;
+  --blizzardBlue: #9fe7f5;
+  --lightTangerine: #f7ad19;
+  --tangerine: #f27f0c;
+}
+
 header {
   display: flex;
   flex-direction: row;
 }
-
+/*font-family: 'Londrina Solid', cursive; */
 body {
   /* display: flex;
   flex-direction: column; */
+  font-family: "Londrina Solid", cursive;
+  font-weight: normal;
+  /* font-weight: 100; */
   font-size: 16px;
+  background-color: var(--prussianBlue);
 }
 
 .timer {
@@ -16,14 +28,27 @@ body {
 
 .pageButton {
   display: flex;
-  color: white;
-  background-color: #c94fb9;
-  border-color: pink;
+  color: var(--blizzardBlue);
+  background-color: var(--bostonBlue);
+  border-style: solid;
+  border-color: var(--blizzardBlue);
   border-width: 5px;
-  border-radius: 15%;
+  border-radius: 15px;
   padding: 5px;
-  width: 100px;
   justify-content: center;
+}
+
+button {
+  font-size: 28px;
+  font-weight: normal;
+  color: var(--blizzardBlue);
+  background-color: var(--bostonBlue);
+  border-color: var(--lightTangerine);
+  border-width: 5px;
+  border-radius: 10px;
+  padding: 5px;
+  /* width: 100px; */
+  margin: 5px 0px 5px 0px;
 }
 
 button[disabled] {
@@ -34,7 +59,10 @@ button[disabled] {
 section {
   display: flex;
   flex-basis: 40%;
-  background-color: lightslategray;
+  border-style: solid;
+  border-color: var(--bostonBlue);
+  border-radius: 25px;
+  border-width: 16px;
   justify-content: center;
   vertical-align: middle;
   flex-direction: column;
@@ -43,16 +71,28 @@ section {
   align-items: center;
 }
 
+h2 {
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--lightTangerine);
+}
+
+li {
+  font-size: 28px;
+  font-weight: 300;
+}
+
 h1,
 li {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
+  /* font-weight: bold; */
+  color: var(--tangerine);
 }
 
 .pageTitle {
-  font-size: 32px;
+  font-size: 48px;
   margin-bottom: 5vh;
 }
 
@@ -77,4 +117,35 @@ li {
 
 .submitForm {
   display: flex;
+  align-items: center;
+}
+
+.defaultMessage {
+  padding: 28px;
+}
+
+.viewHighscore {
+  color: var(--blizzardBlue);
+  margin: 10px;
+  font-size: 20px;
+}
+
+input {
+  padding: 5px 0px 5px 0px;
+  margin: 0px 10px 0px 10px;
+  height: 44px;
+  font-family: "Londrina Solid", cursive;
+  font-size: 24px;
+}
+
+.startButtonSpacing {
+  margin-top: 36px;
+}
+
+.homepageButtonSpacing {
+  margin-top: 36px;
+}
+
+.highscoreTable {
+  margin: 10px;
 }

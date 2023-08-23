@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barriecito&family=Londrina+Solid:wght@300;400;900&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The JS Quiz Show</title>
     <link rel="stylesheet" type="text/css" href="./Assets/css/reset.css" />
@@ -10,17 +13,17 @@
   <body>
     <!-- Highscore Page anchor path and Quiz Game's timer display -->
     <header>
-      <a id="viewHighscore">View Highscores</a>
+      <a id="viewHighscore" class="viewHighscore">View Highscores</a>
       <li id="timer" class="timer"></li>
     </header>
     <!-- Homepage Display -->
-    <section id="home">
+    <section id="home" class="defaultMessage">
       <h1 class="pageTitle">Coding Quiz Challenge!</h1>
-      <li>
+      <h2>
         Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten
         seconds
-      </li>
-      <button id="startButton" class="pageButton">Start Quiz</button>
+      </h2>
+      <button id="startButton" class="pageButton startButtonSpacing">Start Quiz</button>
     </section>
     <!-- Question Display -->
     <section id="quiz" class="hide">
@@ -34,19 +37,19 @@
     <section id="gameOverPage" class="hide">
       <h2>GAME OVER</h2>
       <form id="form" class="submitForm">
-        <li>Initials Here</li>
-        <input type="text" id="initials"></input>
+        <li>Initials Here: </li>
+        <input type="text" id="initials" maxlength="6" size="6"></input>
         <button id="submitInitials">Submit</button>
       </form>
       <li id="finalScore"></li>
-      <button id="homepageButton1">Back To Homepage</button>
-      <button id="playAgainButton" class="pageButton">Play Again?</button>
+      <button id="homepageButton1" class="homepageButtonSpacing">Back To Homepage</button>
+      <button id="playAgainButton" class="pageButton">Play Again</button>
     </section>
     <!-- Highscore Page Display -->
     <section id="highscorePage" class="hide">
       <h2>Highscores</h2>
-      <button id="homepageButton2">Back To Homepage</button>
-      <section id="highscoreTable"></section>
+      <section id="highscoreTable" class="highscoreTable"></section>
+      <button id="homepageButton2" class="homepageButtonSpacing">Back To Homepage</button>
     </section>
 
     <script

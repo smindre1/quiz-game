@@ -1,3 +1,5 @@
+//Discovered an issue. When you go from the question page to the highscore page.
+
 //Check if this is needed
 var timer = document.querySelector(".timer");
 
@@ -67,6 +69,7 @@ function quizGame() {
   score = 0;
   sequence = 0;
   timeDeducted = 0;
+  highscoreTab.style.display = "none";
   gameOverPage.style.display = "none";
   homePage.style.display = "flex"; //Test if this line is needed*
   var start = new Date();
@@ -133,6 +136,7 @@ function endGame() {
   quiz.style.display = "none";
   timer.innerHTML = "";
   gameOverPage.style.display = "flex";
+  highscoreTab.style.display = "flex";
   form.style.display = "flex";
   //Displays final score on game over page.
   finalScore.innerHTML = "Score: " + score;
@@ -146,6 +150,7 @@ function highscorePage() {
   gameOverPage.style.display = "none";
   homePage.style.display = "none";
   viewHighscorePage.style.display = "flex";
+  highscoreTab.style.display = "none";
 
   var highscoreTable = document.getElementById("highscoreTable");
   //Removes any prior list of highscores. Without this, every list generated from the user visiting the highscore page previously will stack.
@@ -165,6 +170,7 @@ function homepageScreen() {
   gameOverPage.style.display = "none";
   viewHighscorePage.style.display = "none";
   homePage.style.display = "flex";
+  highscoreTab.style.display = "flex";
 }
 
 //Takes the <input> initials from the game over screen, displays it, and stores it to a nested array in local storage.
