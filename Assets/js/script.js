@@ -28,6 +28,9 @@ var sequence = 0;
 var score = 0;
 var scoreboard = [];
 var timeDeducted = 0;
+// var storedScoreboard = [];
+// //add if statement.
+// localStorage.setItem("user", JSON.stringify(scoreboard));
 //Questions stored in nested array.
 var questions = [
   {
@@ -183,7 +186,11 @@ submitInitials.addEventListener("click", function (event) {
   var player = [nameInitials, score];
   form.style.display = "none";
   finalScore.innerHTML = nameInitials + ": " + score;
-
+  //Checks if there is already a 'user' item in local storage. If not creates empty object.
+  if (localStorage.getItem("user") === null) {
+    localStorage.setItem("user", JSON.stringify(scoreboard));
+  }
+  //If there is already a 'user' item in local storage it is grabbed and updated.
   var storedScoreboard = JSON.parse(localStorage.getItem("user"));
   scoreboard = storedScoreboard;
   scoreboard.push(player);
